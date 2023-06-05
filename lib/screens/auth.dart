@@ -128,7 +128,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               });
                             },
                             child: Text(_isLogin
-                                ? 'Create an account'
+                                ? 'Create an accounts'
                                 : 'I already have an account'),
                           ),
                         ],
