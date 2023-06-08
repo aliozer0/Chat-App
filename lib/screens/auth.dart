@@ -139,22 +139,23 @@ class _AuthScreenState extends State<AuthScreen> {
                               _enteredEmail = value!;
                             },
                           ),
-                          TextFormField(
-                            decoration:
-                                const InputDecoration(labelText: 'Username'),
-                            enableInteractiveSelection: false,
-                            validator: (value) {
-                              if (value!.isEmpty ||
-                                  value == null ||
-                                  value.trim().length < 4) {
-                                return 'please enter at least 4 characters';
-                              }
-                              return null;
-                            },
-                            onSaved: (value) {
-                              _enteredUsername = value!;
-                            },
-                          ),
+                          if (!_isLogin)
+                            TextFormField(
+                              decoration:
+                                  const InputDecoration(labelText: 'Username'),
+                              enableInteractiveSelection: false,
+                              validator: (value) {
+                                if (value!.isEmpty ||
+                                    value == null ||
+                                    value.trim().length < 4) {
+                                  return 'please enter at least 4 characters';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                _enteredUsername = value!;
+                              },
+                            ),
                           TextFormField(
                             decoration:
                                 const InputDecoration(labelText: 'Password'),
