@@ -2,6 +2,7 @@
 
 import 'dart:ffi';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:chat_app/widgets/user_image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -26,6 +27,7 @@ class _AuthScreenState extends State<AuthScreen> {
   var _isLogin = true;
   var _enteredEmail = '';
   var _enteredPassword = '';
+  var _enteredUsername = '';
   File? _selectedImage;
   var _Authenticating = false;
 
@@ -62,7 +64,7 @@ class _AuthScreenState extends State<AuthScreen> {
             .collection('users')
             .doc(userCredentials.user!.uid)
             .set({
-          'username': ' to be done...',
+          'username': _enteredUsername,
           'email': _enteredEmail,
           'image_url': imageUrl
         });
@@ -135,6 +137,22 @@ class _AuthScreenState extends State<AuthScreen> {
                             },
                             onSaved: (value) {
                               _enteredEmail = value!;
+                            },
+                          ),
+                          TextFormField(
+                            decoration:
+                                const InputDecoration(labelText: 'Username'),
+                            enableInteractiveSelection: false,
+                            validator: (value) {
+                              if (value!.isEmpty ||
+                                  value == null ||
+                                  value.trim().length < 4) {
+                                return 'please enter at least 4 characters';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              _enteredUsername = value!;
                             },
                           ),
                           TextFormField(
