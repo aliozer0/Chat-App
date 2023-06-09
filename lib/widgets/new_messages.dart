@@ -25,7 +25,7 @@ class _NewMessageState extends State<NewMessage> {
     if (enteredMessage.trim().isEmpty) {
       return;
     }
-    Focus.of(context).unfocus();
+    FocusScope.of(context).unfocus();
     _messageController.clear();
 
     final user = FirebaseAuth.instance.currentUser!;
@@ -36,7 +36,7 @@ class _NewMessageState extends State<NewMessage> {
 
     FirebaseFirestore.instance.collection('chat').add({
       'text': enteredMessage,
-      'ccreatedAt': Timestamp.now(),
+      'createdAt': Timestamp.now(),
       'userId': user.uid,
       'username': userData.data()!['username'],
       'userImage': userData.data()!['image_url'],
